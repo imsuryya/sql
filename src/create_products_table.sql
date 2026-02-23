@@ -49,3 +49,28 @@ INSERT INTO products (product_id, product_name, category, price, stock_quantity,
 VALUES 
     (105, 'Standing Desk', 'Furniture', 599.99, 15, 'FurniWorld', '2024-03-10'),
     (106, 'Monitor 27 inch', 'Electronics', 399.99, 25, 'TechSupply Inc', '2024-03-15');
+
+SELECT product_name, supplier FROM products WHERE supplier = 'TechSupply Inc';
+
+SELECT DISTINCT category FROM products;
+
+SELECT product_name, price FROM products WHERE price BETWEEN 50 AND 500;
+
+SELECT * FROM products WHERE product_name LIKE '%Pro%';
+
+SELECT COUNT(*) AS total_products FROM products;
+
+SELECT MIN(price) AS min_price, MAX(price) AS max_price FROM products;
+
+UPDATE products SET supplier = 'NewSupplier Ltd' WHERE supplier = 'CableCo';
+
+UPDATE products SET stock_quantity = 0 WHERE created_date < '2024-02-01';
+
+DELETE FROM products WHERE category = 'Furniture' AND stock_quantity < 10;
+
+INSERT INTO products (product_id, product_name, category, price, stock_quantity, supplier, created_date)
+VALUES (107, 'Keyboard Mechanical', 'Electronics', 89.99, 75, 'TechSupply Inc', '2024-04-01');
+
+SELECT category, MAX(price) AS highest_price FROM products GROUP BY category ORDER BY highest_price DESC;
+
+SELECT * FROM products WHERE stock_quantity > (SELECT AVG(stock_quantity) FROM products);
